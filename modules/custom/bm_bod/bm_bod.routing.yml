@@ -1,0 +1,13 @@
+bm_bod.form:
+  path: '/example-form'
+  defaults:
+    _title: 'Marketing dashboard'
+    _form: '\Drupal\bm_bod\Form\UsersListForm'
+  requirements:
+    _permission: 'access content'
+bm_bod.marketing-dashboard:
+  path: '/marketing-dashboard2'
+  defaults:
+    _controller: '\Drupal\bm_bod\Controller\MarketingDashboardController::page'
+  requirements:
+    _access: 'TRUE'

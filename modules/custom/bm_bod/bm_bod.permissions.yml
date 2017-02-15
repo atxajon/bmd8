@@ -1,0 +1,7 @@
+administer BM BoD:
+  title: 'Administer BM Bod'
+BM invest:
+    title: 'Perform investment operations'
+    description: 'Allows a user to perform all investment operations.'
+create BM BoD Account:
+        title: 'Create BM BoD account'

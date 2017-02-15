@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Contains bm_bod.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function bm_bod_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the bm_bod module.
+    case 'help.page.bm_bod':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('BM Bod') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function bm_bod_theme() {
+  $theme = [];
+
+  return $theme;
+}

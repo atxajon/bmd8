@@ -1,0 +1,8 @@
+{% set bg_color = entity.field_2_columns_bg_colour['#items'].getValue()|first.value %}
+{% set classes = [
+    'text-center',
+    'bg-color-' ~ bg_color,
+] %}
+<div {{ attributes.addClass(classes) }}>
+    {{ entity }}
+</div>

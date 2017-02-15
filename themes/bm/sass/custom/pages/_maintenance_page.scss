@@ -1,0 +1,16 @@
+/*******************************************************************************
+ * _maintenance_page.scss
+ *
+ ******************************************************************************/
+
+.maintenance-page {
+  #page {
+    margin-top: 40px;
+    @include make-sm-column(4);
+    @include make-sm-column-offset(4);
+  }
+}
+.server-error-img {
+  margin: 0 auto;
+  display: block;
+}

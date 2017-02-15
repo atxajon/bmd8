@@ -1,0 +1,5 @@
+name: bm_bod
+type: module
+description: BM Bod
+core: 8.x
+package: BM

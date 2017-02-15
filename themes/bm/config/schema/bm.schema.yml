@@ -1,0 +1,5 @@
+# Schema for the theme setting configuration file of the bm theme.
+
+bm.settings:
+  type: theme_settings
+  label: 'bm settings'

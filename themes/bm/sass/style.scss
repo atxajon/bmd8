@@ -1,0 +1,27 @@
+/*******************************************************************************
+ * style.scss
+ *
+ * This file shouldn't directly contain any SCSS code, instead it only serves to
+ * combine the SCSS contained in other Sass partials through @import directives.
+ ******************************************************************************/
+
+// Default variables.
+@import "default-variables";
+
+// Bootstrap Framework.
+@import '../bootstrap/assets/stylesheets/bootstrap';
+
+// Base-theme (Drupal bootstrap 'parent' theme) overrides, it comes with
+// the theme starterkit pack.
+@import 'overrides';
+
+/*******************************************************************************
+ * BM subtheme specific custom css begins here.
+ * UTILS............Boilerplate stuff: fonts, grid mixins, etc.
+ * PAGES............Layout styles for specific pages.
+ * COMPONENTS.......Modules, components that need to thought about as standalone
+ * elements that can be dropped anywhere on the page.
+ ******************************************************************************/
+@import 'custom/utils';
+@import 'custom/pages';
+@import 'custom/components';

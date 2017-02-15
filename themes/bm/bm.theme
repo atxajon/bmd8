@@ -1,0 +1,38 @@
+<?php
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function bm_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  // Add content type suggestions.
+  if ($node = \Drupal::request()->attributes->get('node')) {
+    array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
+  }
+}
+
+/**
+ * Implements template_preprocess_region().
+ */
+function bm_preprocess_region(&$vars) {
+  $region = $vars['elements']['#region'];
+  if ($region == 'header') {
+    $vars['attributes']['class'][] = 'container';
+  }
+}
+
+/**
+ * Implements template_preprocess_page_title().
+ */
+function bm_preprocess_page_title(&$variables) {
+  $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+  // Visually hide front page title.
+  if ($variables['is_front']) {
+    $variables['title_attributes']['class'][] = 'sr-only';
+  }
+}
