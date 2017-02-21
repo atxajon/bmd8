@@ -1,0 +1,22 @@
+/*******************************************************************************
+ * _images.scss
+ *
+ * Images styles.
+ ******************************************************************************/
+.no-repeat {
+  background: no-repeat;
+}
+.contain {
+  background: center center;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+.cover {
+  background: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

@@ -1,0 +1,27 @@
+/*******************************************************************************
+ * _eck_entities.scss
+ *
+ * Styles for ECK slice bundles.
+ ******************************************************************************/
+
+
+/*********************
+ * Styles for slice bundle 'Background image'.
+ *********************/
+.opaque {
+  // @todo: refactor this within its own mixin that takes a parameter.
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, .8);
+}
+.field--name-field-bg-img-text-content {
+  margin: 40px 0 40px 0;
+  padding: 40px 0 40px 0;
+}
+
+/*********************
+ * Styles for slice bundle 'Centered text'.
+ *********************/
+.bg-color-blue {
+  background-color: $blue;
+  color: white;
+}

@@ -36,3 +36,10 @@ function bm_preprocess_page_title(&$variables) {
     $variables['title_attributes']['class'][] = 'sr-only';
   }
 }
+
+/**
+ * Implements template_preprocess_field().
+ */
+function bm_preprocess_field(&$vars) {
+  $element = $vars['element'];
+}

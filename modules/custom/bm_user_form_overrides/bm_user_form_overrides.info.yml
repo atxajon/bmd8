@@ -1,0 +1,5 @@
+name: BM user form overrides
+type: module
+description: Overrides for Drupal's default forms such as register, log in and profile forms.
+core: 8.x
+package: BM

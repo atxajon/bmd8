@@ -44,6 +44,7 @@
     'field--name-' ~ field_name|clean_class,
     'field--type-' ~ field_type|clean_class,
     'field--label-' ~ label_display,
+    'opaque',
   ]
 %}
 {%
@@ -57,14 +58,14 @@
   {% if multiple %}
     <div{{ attributes.addClass(classes, 'field--items') }}>
       {% for item in items %}
-        <div class="container">
+        <div class="container bg-color bg-color-white">
             <div{{ item.attributes.addClass('field--item') }}>{{ item.content }}</div>
         </div>
       {% endfor %}
     </div>
   {% else %}
     {% for item in items %}
-        <div class="container">
+        <div class="container bg-color bg-color-white">
             <div{{ attributes.addClass(classes, 'field--item') }}>{{ item.content }}</div>
         </div>
     {% endfor %}

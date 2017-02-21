@@ -1,0 +1,106 @@
+<?php
+
+/**
+ * @file
+ * Contains bm_user_form_overrides.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\UserInterface;
+use Drupal\Component\Utility\Unicode;
+
+/**
+ * Implements hook_help().
+ */
+function bm_user_form_overrides_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the bm_user_form_overrides module.
+    case 'help.page.bm_user_form_overrides':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Overrides for Drupal&#039;s default forms such as register, log in and profile forms.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function bm_user_form_overrides_theme() {
+  $theme = [];
+
+  return $theme;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * @see user_register_form()
+ */
+function bm_user_form_overrides_form_user_register_form_alter(&$form, FormStateInterface $form_state) {
+  $form['account']['mail']['#title'] = t('E-mail');
+  // Hides username field from registration form by assigning a temp value we'll
+  // overwrite on bm_user_form_overrides_user_insert().
+  $form['account']['name']['#type'] = 'value';
+  $form['account']['name']['#value'] = 'bm_username_' . user_password();
+}
+
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function bm_user_form_overrides_form_user_pass_alter(&$form, FormStateInterface $form_state) {
+
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ *
+ * Alter the username (after entity being stored).
+ */
+function bm_user_form_overrides_user_insert(UserInterface $account) {
+  // Strip off everything after the @ sign.
+  $new_name = preg_replace('/@.*$/', '', $account->getEmail());
+  // Clean up the username.
+  $new_name = bm_cleanup_username($new_name);
+
+  // Ensure whatever name we have is unique.
+  $new_name = $new_name . '_' . $account->id();
+
+  $account->setUsername($new_name);
+  $account->save();
+}
+
+/**
+ * Cleans up username.
+ *
+ * Run username sanitation, e.g.:
+ *     Replace two or more spaces with a single underscore
+ *     Strip illegal characters.
+ *
+ * @param string $name
+ *   The username to be cleaned up.
+ *
+ * @return string
+ *   Cleaned up username.
+ */
+function bm_cleanup_username($name) {
+  // Strip illegal characters.
+  $name = preg_replace('/[^\x{80}-\x{F7} a-zA-Z0-9@_.\'-]/', '', $name);
+
+  // Strip leading and trailing spaces.
+  $name = trim($name);
+
+  // Convert any other series of spaces to a single underscore.
+  $name = preg_replace('/\s+/', '_', $name);
+
+  // If there's nothing left use a default.
+  $name = ('' === $name) ? t('user') : $name;
+
+  // Truncate to a reasonable size.
+  $name = (Unicode::strlen($name) > (USERNAME_MAX_LENGTH - 10)) ? Unicode::substr($name, 0, USERNAME_MAX_LENGTH - 11) : $name;
+  return $name;
+}
